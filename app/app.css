@@ -174,3 +174,57 @@ body {
 .color-swatch-selected {
   @apply ring-2 ring-offset-2 ring-blue-500;
 }
+
+/* Lightweight animations for HeroAnimation */
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translateY(0); 
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateY(-15px); 
+    opacity: 0.5;
+  }
+}
+
+@keyframes speed-line {
+  0% { 
+    transform: translateX(-200px); 
+    opacity: 0;
+  }
+  20% { 
+    opacity: 1;
+  }
+  80% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(100vw); 
+    opacity: 0;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-speed-line {
+  animation: speed-line 4s ease-out infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float-slow,
+  .animate-speed-line,
+  .animate-float,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+}

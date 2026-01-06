@@ -69,26 +69,23 @@ export function FloatingCTA({
             <X className="w-4 h-4 text-gray-500" />
           </button>
 
-          {/* CTA Button */}
-          <Link to="/commander">
+          {/* CTA Button - with promo code FLASH10 */}
+          <Link to="/commander?promo=FLASH10">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative"
             >
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-[var(--accent)] rounded-full blur-lg opacity-40 animate-pulse" />
-              
               {/* Button */}
               <div className="relative flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[var(--accent)] to-[#2563eb] text-white rounded-full shadow-xl font-semibold">
                 <Sparkles className="w-5 h-5" />
-                <span>Commander mon site</span>
+                <span>-10% maintenant</span>
                 <ArrowRight className="w-5 h-5" />
               </div>
 
               {/* Badge */}
-              <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded-full animate-bounce">
-                -10%
+              <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded-full">
+                FLASH10
               </div>
             </motion.div>
           </Link>

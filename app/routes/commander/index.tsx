@@ -44,6 +44,13 @@ export async function clientLoader() {
 // COMPONENT
 // ============================================
 
+// Promo codes configuration
+const PROMO_CODES: Record<string, { discount: number; label: string }> = {
+  'FLASH10': { discount: 0.10, label: '-10% Flash' },
+  'BIENVENUE15': { discount: 0.15, label: '-15% Bienvenue' },
+  'VIP20': { discount: 0.20, label: '-20% VIP' },
+};
+
 export default function CommanderPage({ loaderData }: Route.ComponentProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -51,6 +58,13 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
   
   // Pre-select offer from URL
   const preselectedOffer = searchParams.get('offre');
+  
+  // Get promo code from URL
+  const urlPromoCode = searchParams.get('promo')?.toUpperCase() || '';
+  const [promoCode, setPromoCode] = useState<string>(urlPromoCode);
+  const [promoInput, setPromoInput] = useState<string>('');
+  const [promoError, setPromoError] = useState<string>('');
+  const activePromo = PROMO_CODES[promoCode];
   
   const [selectedOffer, setSelectedOffer] = useState<string>(preselectedOffer || '');
   const [formData, setFormData] = useState({
@@ -63,6 +77,18 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
     sector: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  
+  // Apply promo code
+  const applyPromoCode = () => {
+    const code = promoInput.toUpperCase().trim();
+    if (PROMO_CODES[code]) {
+      setPromoCode(code);
+      setPromoError('');
+      setPromoInput('');
+    } else if (code) {
+      setPromoError('Code promo invalide');
+    }
+  };
 
   // Set default offer
   useEffect(() => {
@@ -96,13 +122,21 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
     e.preventDefault();
     if (!validateForm()) return;
     
-    // Save to session
+    // Save to session with promo code
     sessionStorage.setItem('ff_order_data', JSON.stringify({
       selectedOffer,
       formData,
+      promoCode: promoCode || null,
+      discount: activePromo?.discount || 0,
     }));
     
     navigate('/commander/paiement');
+  };
+  
+  // Calculate price with discount
+  const getDiscountedPrice = (price: number) => {
+    if (!activePromo) return price;
+    return Math.round(price * (1 - activePromo.discount));
   };
 
   const currentOffer = offers.find((o: any) => o.id === selectedOffer);
@@ -112,10 +146,10 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
       <Header />
       
       <main className="min-h-screen bg-[#0a0a0f] pt-20 pb-16 relative overflow-hidden">
-        {/* Background Effects */}
+        {/* Background Effects - Lightweight static gradients */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-fuchsia-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-500/8 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-fuchsia-500/8 rounded-full blur-[100px]" />
         </div>
 
         <div className="container mx-auto px-6 max-w-6xl relative">
@@ -214,9 +248,16 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
                             </div>
                           </div>
                           
-                          {/* Price */}
+                          {/* Price with potential discount */}
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-white">{offer.price_ttc}€</div>
+                            {activePromo ? (
+                              <>
+                                <div className="text-sm text-white/40 line-through">{offer.price_ttc}€</div>
+                                <div className="text-2xl font-bold text-emerald-400">{getDiscountedPrice(offer.price_ttc)}€</div>
+                              </>
+                            ) : (
+                              <div className="text-2xl font-bold text-white">{offer.price_ttc}€</div>
+                            )}
                             <div className="text-xs text-white/40">TTC</div>
                           </div>
                         </div>
@@ -364,10 +405,71 @@ export default function CommanderPage({ loaderData }: Route.ComponentProps) {
                           <span>Livraison estimée : ~{currentOffer.estimated_hours || 2}h</span>
                         </div>
                         
+                        {/* Promo Code Section */}
+                        <div className="border-t border-white/10 pt-4">
+                          {activePromo ? (
+                            <div className="flex items-center justify-between p-3 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
+                              <div className="flex items-center gap-2">
+                                <Check className="w-4 h-4 text-emerald-400" />
+                                <span className="text-emerald-300 font-medium text-sm">
+                                  Code {promoCode} appliqué
+                                </span>
+                              </div>
+                              <button 
+                                type="button"
+                                onClick={() => setPromoCode('')}
+                                className="text-white/50 hover:text-white text-xs"
+                              >
+                                Retirer
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="space-y-2">
+                              <label className="text-sm text-white/60">Code promo</label>
+                              <div className="flex gap-2">
+                                <input
+                                  type="text"
+                                  value={promoInput}
+                                  onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
+                                  placeholder="Entrez votre code"
+                                  className="flex-1 px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/30 text-sm focus:border-violet-500 outline-none"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={applyPromoCode}
+                                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors"
+                                >
+                                  OK
+                                </button>
+                              </div>
+                              {promoError && (
+                                <p className="text-red-400 text-xs">{promoError}</p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Price with discount */}
                         <div className="border-t border-white/10 pt-4 mt-4">
+                          {activePromo && (
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-white/60 text-sm">Sous-total</span>
+                              <span className="text-white/60 line-through">{currentOffer.price_ttc}€</span>
+                            </div>
+                          )}
+                          {activePromo && (
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-emerald-400 text-sm font-medium">{activePromo.label}</span>
+                              <span className="text-emerald-400 font-medium">
+                                -{Math.round(currentOffer.price_ttc * activePromo.discount)}€
+                              </span>
+                            </div>
+                          )}
                           <div className="flex justify-between items-baseline">
                             <span className="text-white font-medium">Total TTC</span>
-                            <span className="text-3xl font-bold text-white">{currentOffer.price_ttc}€</span>
+                            <span className="text-3xl font-bold text-white">
+                              {getDiscountedPrice(currentOffer.price_ttc)}€
+                            </span>
                           </div>
                         </div>
                       </div>

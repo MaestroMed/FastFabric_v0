@@ -29,6 +29,13 @@ export async function clientLoader() {
   return { offers };
 }
 
+// Same promo codes as commander page
+const PROMO_CODES: Record<string, { discount: number; label: string }> = {
+  'FLASH10': { discount: 0.10, label: '-10% Flash' },
+  'BIENVENUE15': { discount: 0.15, label: '-15% Bienvenue' },
+  'VIP20': { discount: 0.20, label: '-20% VIP' },
+};
+
 export default function PaiementPage({ loaderData }: Route.ComponentProps) {
   const navigate = useNavigate();
   const { offers } = loaderData;
@@ -45,6 +52,16 @@ export default function PaiementPage({ loaderData }: Route.ComponentProps) {
     }
     setOrderData(JSON.parse(saved));
   }, [navigate]);
+  
+  // Get promo info
+  const promoCode = orderData?.promoCode;
+  const activePromo = promoCode ? PROMO_CODES[promoCode] : null;
+  
+  // Calculate discounted price
+  const getDiscountedPrice = (price: number) => {
+    if (!activePromo) return price;
+    return Math.round(price * (1 - activePromo.discount));
+  };
 
   const handlePayment = async () => {
     if (!orderData) return;
@@ -53,7 +70,7 @@ export default function PaiementPage({ loaderData }: Route.ComponentProps) {
     
     const selectedOffer = offers.find((o: any) => o.id === orderData.selectedOffer);
     
-    // Create order in local store
+    // Create order in local store (with discounted price)
     const order = localStore.createOrder({
       offer_id: orderData.selectedOffer,
       customer: {
@@ -66,8 +83,9 @@ export default function PaiementPage({ loaderData }: Route.ComponentProps) {
       project_details: {
         name: orderData.formData.projectName,
         sector: orderData.formData.sector,
+        promoCode: promoCode || null,
       },
-      amount_ttc: selectedOffer?.price_ttc || 0,
+      amount_ttc: total, // Use discounted price
       status: paymentMethod === 'card' ? 'payment_pending' : 'new',
     });
 
@@ -110,17 +128,18 @@ export default function PaiementPage({ loaderData }: Route.ComponentProps) {
   if (!orderData) return null;
 
   const selectedOffer = offers.find((o: any) => o.id === orderData.selectedOffer);
-  const total = selectedOffer?.price_ttc || 0;
+  const originalPrice = selectedOffer?.price_ttc || 0;
+  const total = getDiscountedPrice(originalPrice);
 
   return (
     <>
       <Header />
       
       <main className="min-h-screen bg-[#0a0a0f] pt-20 pb-16 relative overflow-hidden">
-        {/* Background Effects */}
+        {/* Background Effects - Lightweight static gradients */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-emerald-500/8 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-violet-500/8 rounded-full blur-[100px]" />
         </div>
 
         <div className="container mx-auto px-6 max-w-4xl relative">
@@ -189,10 +208,28 @@ export default function PaiementPage({ loaderData }: Route.ComponentProps) {
                       <p className="text-white font-bold text-lg">{selectedOffer?.name}</p>
                     </div>
                     <div className="text-right">
+                      {activePromo && (
+                        <p className="text-sm text-white/40 line-through">{originalPrice}€</p>
+                      )}
                       <p className="text-3xl font-bold text-white">{total}€</p>
                       <p className="text-xs text-white/50">TTC</p>
                     </div>
                   </div>
+                  
+                  {/* Promo code badge */}
+                  {activePromo && (
+                    <div className="mt-3 flex items-center justify-between p-2 bg-emerald-500/20 rounded-lg border border-emerald-500/30">
+                      <div className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span className="text-emerald-300 font-medium text-sm">
+                          Code {promoCode} : {activePromo.label}
+                        </span>
+                      </div>
+                      <span className="text-emerald-400 font-bold">
+                        -{Math.round(originalPrice * activePromo.discount)}€
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Delivery */}

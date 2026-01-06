@@ -149,13 +149,13 @@ export function ExitIntentPopup({
                   <span className="font-medium">Offre valable 24h uniquement</span>
                 </div>
 
-                {/* CTA */}
+                {/* CTA - auto-apply promo code */}
                 <Link
-                  to="/commander"
+                  to="/commander?promo=BIENVENUE15"
                   onClick={handleClose}
                   className="flex items-center justify-center gap-2 w-full py-4 bg-[var(--accent)] text-white rounded-xl font-bold text-lg hover:bg-[var(--accent)]/90 transition-colors"
                 >
-                  Profiter de l'offre
+                  Profiter de l'offre -15%
                   <ArrowRight className="w-5 h-5" />
                 </Link>
 
