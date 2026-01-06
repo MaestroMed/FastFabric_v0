@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { useFetcher } from 'react-router';
-import { Sparkles, RefreshCw, Check, Wand2 } from 'lucide-react';
-import { Button } from '~/components/ui/Button';
+import { Check, Type, Palette } from 'lucide-react';
 import { cn } from '~/lib/utils';
 
 interface LogoGeneratorProps {
@@ -12,6 +10,14 @@ interface LogoGeneratorProps {
   onSelect: (logoUrl: string | null, concept: string) => void;
 }
 
+// Prédéfinis de styles de logo texte
+const logoStyles = [
+  { id: 'modern', name: 'Moderne', font: 'font-sans font-bold tracking-tight' },
+  { id: 'elegant', name: 'Élégant', font: 'font-serif italic' },
+  { id: 'bold', name: 'Impact', font: 'font-black uppercase tracking-widest' },
+  { id: 'minimal', name: 'Minimal', font: 'font-light tracking-[0.3em] uppercase' },
+];
+
 export function LogoGenerator({
   businessName,
   description,
@@ -19,33 +25,10 @@ export function LogoGenerator({
   colors,
   onSelect,
 }: LogoGeneratorProps) {
-  const fetcher = useFetcher();
-  const [selectedConcept, setSelectedConcept] = useState<number | null>(null);
-  const [skipLogo, setSkipLogo] = useState(false);
+  const [selectedStyle, setSelectedStyle] = useState<string>('modern');
+  const [useInitials, setUseInitials] = useState(false);
 
-  const isLoading = fetcher.state === 'submitting';
-  const concepts = fetcher.data?.concepts || [];
-
-  const generateLogos = () => {
-    fetcher.submit(
-      { businessName, description, style, colors: JSON.stringify(colors) },
-      { method: 'POST', action: '/api/gemini/generate-logo' }
-    );
-  };
-
-  const selectConcept = (index: number, concept: string) => {
-    setSelectedConcept(index);
-    setSkipLogo(false);
-    onSelect(null, concept); // For now, just the concept text
-  };
-
-  const handleSkip = () => {
-    setSkipLogo(true);
-    setSelectedConcept(null);
-    onSelect(null, '');
-  };
-
-  // Generate initials for placeholder logo
+  // Générer les initiales
   const initials = businessName
     .split(' ')
     .map(word => word[0])
@@ -53,155 +36,135 @@ export function LogoGenerator({
     .toUpperCase()
     .slice(0, 2);
 
+  const displayText = useInitials ? initials : businessName;
+
+  const handleStyleSelect = (styleId: string) => {
+    setSelectedStyle(styleId);
+    const selectedStyleObj = logoStyles.find(s => s.id === styleId);
+    onSelect(null, `Logo texte ${selectedStyleObj?.name} - ${useInitials ? 'Initiales' : 'Nom complet'}`);
+  };
+
+  const handleInitialsToggle = (useInit: boolean) => {
+    setUseInitials(useInit);
+    const selectedStyleObj = logoStyles.find(s => s.id === selectedStyle);
+    onSelect(null, `Logo texte ${selectedStyleObj?.name} - ${useInit ? 'Initiales' : 'Nom complet'}`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <label className="block text-sm font-medium text-gray-700">
-          Logo
+        <label className="block text-sm font-medium text-white/70">
+          Style de logo
         </label>
+      </div>
+
+      {/* Toggle Initiales / Nom complet */}
+      <div className="flex gap-2 p-1 bg-white/5 rounded-xl border border-white/10">
         <button
           type="button"
-          onClick={handleSkip}
+          onClick={() => handleInitialsToggle(false)}
           className={cn(
-            "text-sm",
-            skipLogo ? "text-[var(--accent)] font-medium" : "text-gray-500 hover:text-gray-700"
+            "flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all",
+            !useInitials 
+              ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white" 
+              : "text-white/50 hover:text-white/70"
           )}
         >
-          {skipLogo ? '✓ Logo simple (texte)' : 'Utiliser un logo texte simple'}
+          <Type className="w-4 h-4 inline mr-2" />
+          Nom complet
+        </button>
+        <button
+          type="button"
+          onClick={() => handleInitialsToggle(true)}
+          className={cn(
+            "flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all",
+            useInitials 
+              ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white" 
+              : "text-white/50 hover:text-white/70"
+          )}
+        >
+          <Palette className="w-4 h-4 inline mr-2" />
+          Initiales
         </button>
       </div>
 
-      {!skipLogo && (
-        <>
-          {/* Generate Button */}
-          {concepts.length === 0 && (
-            <div className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border border-purple-100">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center">
-                  <Wand2 className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">Génération de logo IA</h4>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Notre IA va créer 4 concepts de logo personnalisés basés sur votre projet
-                  </p>
-                </div>
-                <Button
-                  type="button"
-                  onClick={generateLogos}
-                  isLoading={isLoading}
-                  className="gap-2"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Générer des propositions
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Loading State */}
-          {isLoading && (
-            <div className="grid grid-cols-2 gap-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-xl bg-gray-100 animate-pulse flex items-center justify-center"
-                >
-                  <div className="w-12 h-12 bg-gray-200 rounded-lg" />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Concepts */}
-          {concepts.length > 0 && !isLoading && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">
-                  Sélectionnez un concept
-                </span>
-                <button
-                  type="button"
-                  onClick={generateLogos}
-                  className="text-sm text-[var(--accent)] hover:underline flex items-center gap-1"
-                >
-                  <RefreshCw className="w-3 h-3" />
-                  Régénérer
-                </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {concepts.map((concept: string, index: number) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => selectConcept(index, concept)}
-                    className={cn(
-                      "relative p-4 rounded-xl border-2 text-left transition-all duration-200",
-                      selectedConcept === index
-                        ? "border-[var(--accent)] bg-blue-50"
-                        : "border-gray-200 hover:border-gray-300"
-                    )}
-                  >
-                    {/* Preview placeholder */}
-                    <div 
-                      className="aspect-square rounded-lg mb-3 flex items-center justify-center text-white font-bold text-2xl"
-                      style={{ 
-                        background: `linear-gradient(135deg, ${colors[0] || '#0071e3'} 0%, ${colors[1] || '#5856d6'} 100%)` 
-                      }}
-                    >
-                      {initials}
-                    </div>
-                    
-                    <p className="text-xs text-gray-600 line-clamp-3">{concept}</p>
-                    
-                    {selectedConcept === index && (
-                      <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--accent)] rounded-full flex items-center justify-center">
-                        <Check className="w-4 h-4 text-white" />
-                      </div>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
-      )}
-
-      {/* Skip Logo Preview */}
-      {skipLogo && (
-        <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <div className="flex items-center gap-4">
-            <div 
-              className="w-16 h-16 rounded-xl flex items-center justify-center text-white font-bold text-xl"
-              style={{ 
-                background: `linear-gradient(135deg, ${colors[0] || '#0071e3'} 0%, ${colors[1] || '#5856d6'} 100%)` 
-              }}
-            >
-              {initials}
-            </div>
-            <div>
-              <p className="font-semibold text-gray-900">{businessName}</p>
-              <p className="text-sm text-gray-500">Logo texte avec vos initiales</p>
-            </div>
+      {/* Aperçu principal */}
+      <div className="relative p-8 rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10" />
+        <div className="relative flex items-center justify-center">
+          <div 
+            className={cn(
+              "px-8 py-4 rounded-xl text-white text-3xl",
+              logoStyles.find(s => s.id === selectedStyle)?.font
+            )}
+            style={{ 
+              background: `linear-gradient(135deg, ${colors[0] || '#8b5cf6'} 0%, ${colors[1] || '#d946ef'} 100%)`,
+              boxShadow: `0 20px 40px -10px ${colors[0] || '#8b5cf6'}50`
+            }}
+          >
+            {displayText || 'Votre Logo'}
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Styles de logo */}
+      <div className="grid grid-cols-2 gap-3">
+        {logoStyles.map((logoStyle) => (
+          <button
+            key={logoStyle.id}
+            type="button"
+            onClick={() => handleStyleSelect(logoStyle.id)}
+            className={cn(
+              "relative p-4 rounded-xl border-2 transition-all duration-300 text-left",
+              selectedStyle === logoStyle.id
+                ? "border-violet-500/50 bg-violet-500/10"
+                : "border-white/10 hover:border-white/20 bg-white/5"
+            )}
+          >
+            {/* Preview mini */}
+            <div 
+              className={cn(
+                "text-white mb-2 truncate",
+                logoStyle.font,
+                useInitials ? "text-xl" : "text-sm"
+              )}
+              style={{ color: colors[0] || '#8b5cf6' }}
+            >
+              {displayText || 'Logo'}
+            </div>
+            
+            <p className="text-xs text-white/50">{logoStyle.name}</p>
+            
+            {selectedStyle === logoStyle.id && (
+              <div className="absolute top-2 right-2 w-5 h-5 bg-violet-500 rounded-full flex items-center justify-center">
+                <Check className="w-3 h-3 text-white" />
+              </div>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Info */}
+      <p className="text-xs text-white/40 text-center">
+        💡 Votre logo sera créé avec votre palette de couleurs et le style choisi
+      </p>
 
       {/* Hidden inputs */}
       <input 
         type="hidden" 
         name="logoOption" 
-        value={skipLogo ? 'text' : selectedConcept !== null ? 'generated' : ''} 
+        value="text"
       />
       <input 
         type="hidden" 
-        name="logoConcept" 
-        value={selectedConcept !== null ? concepts[selectedConcept] : ''} 
+        name="logoStyle" 
+        value={selectedStyle} 
+      />
+      <input 
+        type="hidden" 
+        name="logoUseInitials" 
+        value={useInitials ? 'true' : 'false'} 
       />
     </div>
   );
 }
-
-
-

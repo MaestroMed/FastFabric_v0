@@ -61,7 +61,6 @@ export default [
   ]),
   
   // API routes
-  route("api/gemini/generate-logo", "routes/api/gemini.generate-logo.tsx"),
   route("api/stripe/create-checkout", "routes/api/stripe.create-checkout.tsx"),
   route("api/stripe/webhook", "routes/api/stripe.webhook.tsx"),
   route("api/revision", "routes/api/revision.tsx"),
