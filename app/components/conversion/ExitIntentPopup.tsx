@@ -14,8 +14,8 @@ interface ExitIntentPopupProps {
 }
 
 export function ExitIntentPopup({ 
-  delay = 5000,
-  cookieExpiry = 7 
+  delay = 30000, // Wait 30 seconds before allowing popup
+  cookieExpiry = 30 // Don't show again for 30 days
 }: ExitIntentPopupProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [canShow, setCanShow] = useState(false);

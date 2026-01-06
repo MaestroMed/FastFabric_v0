@@ -269,7 +269,7 @@ export function generateLocalBusinessSchema(ville: Ville, service: typeof servic
       }]
     },
     "priceRange": service.prix,
-    "telephone": "+33600000000",
+    "telephone": "+33757847424",
     "email": "contact@fastfabric.fr"
   };
 }

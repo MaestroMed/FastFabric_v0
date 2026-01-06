@@ -63,7 +63,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
       {/* Conversion widgets */}
       <RecentOrderNotification />
-      <WhatsAppButton phoneNumber="33600000000" />
+      <WhatsAppButton phoneNumber="33757847424" />
     </>
   );
 }

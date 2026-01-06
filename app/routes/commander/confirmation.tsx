@@ -261,7 +261,7 @@ export default function CommanderConfirmation() {
                   contact@fastfabric.fr
                 </a>
                 <a 
-                  href="https://wa.me/33600000000" 
+                  href="https://wa.me/33757847424" 
                   className="flex items-center gap-2 px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg text-emerald-400 text-sm transition-colors"
                 >
                   <Phone className="w-4 h-4" />

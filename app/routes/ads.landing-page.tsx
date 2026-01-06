@@ -117,7 +117,7 @@ export default function AdsLandingPage() {
             <span className="font-bold text-lg">FastFabric</span>
           </div>
           <a 
-            href="tel:+33600000000" 
+            href="tel:+33757847424" 
             className="flex items-center gap-2 text-[var(--accent)] font-semibold"
           >
             <Phone className="w-4 h-4" />
@@ -456,7 +456,7 @@ export default function AdsLandingPage() {
               <ArrowRight className="w-5 h-5" />
             </a>
             <a
-              href="tel:+33600000000"
+              href="tel:+33757847424"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-colors"
             >
               <Phone className="w-5 h-5" />

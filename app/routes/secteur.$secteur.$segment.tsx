@@ -614,7 +614,7 @@ function SecteurVilleView({ data }: { data: any }) {
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
-              <a href="tel:+33600000000" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+              <a href="tel:+33757847424" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
                 <Phone className="w-5 h-5" />
                 Ou appelez-nous
               </a>

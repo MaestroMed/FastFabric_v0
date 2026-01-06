@@ -11,7 +11,7 @@ interface WhatsAppButtonProps {
 }
 
 export function WhatsAppButton({ 
-  phoneNumber = '33600000000', // À remplacer par le vrai numéro
+  phoneNumber = '33757847424',
   message = 'Bonjour ! Je suis intéressé par la création d\'un site web.' 
 }: WhatsAppButtonProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -52,7 +52,7 @@ export function WhatsAppButton({
  * WhatsApp CTA Button for inline use
  */
 export function WhatsAppCTA({ 
-  phoneNumber = '33600000000',
+  phoneNumber = '33757847424',
   message = 'Bonjour ! Je voudrais en savoir plus sur vos services.',
   className = ''
 }: WhatsAppButtonProps & { className?: string }) {

@@ -68,9 +68,9 @@ export function Footer() {
                 <Mail className="w-4 h-4" />
                 contact@fastfabric.fr
               </a>
-              <a href="tel:+33600000000" className="flex items-center gap-2 hover:text-gray-900">
+              <a href="tel:+33757847424" className="flex items-center gap-2 hover:text-gray-900">
                 <Phone className="w-4 h-4" />
-                06 00 00 00 00
+                07 57 84 74 24
               </a>
             </div>
           </div>
