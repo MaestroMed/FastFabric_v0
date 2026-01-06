@@ -1,0 +1,839 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "routes/home": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/commander/index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/commander/projet": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/commander/contenu": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/commander/paiement": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/commander/confirmation": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/suivi": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/mentions-legales": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/cgv": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/confidentialite": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/ads.site-vitrine": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/ads.landing-page": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/blog._index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/blog.$slug": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/secteur.$secteur": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/secteur.$secteur.$segment": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/service.site-vitrine": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/service.landing-page": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/service.site-sur-mesure": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/$service.$ville": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/login": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/commandes/index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/commandes/detail": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/offres/index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/offres/edit": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/projets/index": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/projets/edit": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/tags": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/faq": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/temoignages": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/blog": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/admin/settings": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/api/stripe.create-checkout": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/api/stripe.webhook": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/api/revision": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/robots[.]txt": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/sitemap.xml": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "id": "root",
+        "file": "app/root.tsx",
+        "path": "",
+        "config": {}
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "app/routes/home.tsx",
+        "index": true,
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/commander/index": {
+        "id": "routes/commander/index",
+        "parentId": "root",
+        "file": "app/routes/commander/index.tsx",
+        "path": "commander",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/commander/projet": {
+        "id": "routes/commander/projet",
+        "parentId": "root",
+        "file": "app/routes/commander/projet.tsx",
+        "path": "commander/projet",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/commander/contenu": {
+        "id": "routes/commander/contenu",
+        "parentId": "root",
+        "file": "app/routes/commander/contenu.tsx",
+        "path": "commander/contenu",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/commander/paiement": {
+        "id": "routes/commander/paiement",
+        "parentId": "root",
+        "file": "app/routes/commander/paiement.tsx",
+        "path": "commander/paiement",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/commander/confirmation": {
+        "id": "routes/commander/confirmation",
+        "parentId": "root",
+        "file": "app/routes/commander/confirmation.tsx",
+        "path": "commander/confirmation/:id",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/suivi": {
+        "id": "routes/suivi",
+        "parentId": "root",
+        "file": "app/routes/suivi.tsx",
+        "path": "suivi/:orderNumber",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/mentions-legales": {
+        "id": "routes/mentions-legales",
+        "parentId": "root",
+        "file": "app/routes/mentions-legales.tsx",
+        "path": "mentions-legales",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/cgv": {
+        "id": "routes/cgv",
+        "parentId": "root",
+        "file": "app/routes/cgv.tsx",
+        "path": "cgv",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/confidentialite": {
+        "id": "routes/confidentialite",
+        "parentId": "root",
+        "file": "app/routes/confidentialite.tsx",
+        "path": "confidentialite",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/ads.site-vitrine": {
+        "id": "routes/ads.site-vitrine",
+        "parentId": "root",
+        "file": "app/routes/ads.site-vitrine.tsx",
+        "path": "ads/site-vitrine",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/ads.landing-page": {
+        "id": "routes/ads.landing-page",
+        "parentId": "root",
+        "file": "app/routes/ads.landing-page.tsx",
+        "path": "ads/landing-page",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/blog._index": {
+        "id": "routes/blog._index",
+        "parentId": "root",
+        "file": "app/routes/blog._index.tsx",
+        "path": "blog",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/blog.$slug": {
+        "id": "routes/blog.$slug",
+        "parentId": "root",
+        "file": "app/routes/blog.$slug.tsx",
+        "path": "blog/:slug",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/secteur.$secteur": {
+        "id": "routes/secteur.$secteur",
+        "parentId": "root",
+        "file": "app/routes/secteur.$secteur.tsx",
+        "path": "secteur/:secteur",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/secteur.$secteur.$segment": {
+        "id": "routes/secteur.$secteur.$segment",
+        "parentId": "root",
+        "file": "app/routes/secteur.$secteur.$segment.tsx",
+        "path": "secteur/:secteur/:segment",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/service.site-vitrine": {
+        "id": "routes/service.site-vitrine",
+        "parentId": "root",
+        "file": "app/routes/service.site-vitrine.tsx",
+        "path": "site-vitrine",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/service.landing-page": {
+        "id": "routes/service.landing-page",
+        "parentId": "root",
+        "file": "app/routes/service.landing-page.tsx",
+        "path": "landing-page",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/service.site-sur-mesure": {
+        "id": "routes/service.site-sur-mesure",
+        "parentId": "root",
+        "file": "app/routes/service.site-sur-mesure.tsx",
+        "path": "site-sur-mesure",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/$service.$ville": {
+        "id": "routes/$service.$ville",
+        "parentId": "root",
+        "file": "app/routes/$service.$ville.tsx",
+        "path": ":service/:ville",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/login": {
+        "id": "routes/admin/login",
+        "parentId": "root",
+        "file": "app/routes/admin/login.tsx",
+        "path": "admin/login",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/layout": {
+        "id": "routes/admin/layout",
+        "parentId": "root",
+        "file": "app/routes/admin/layout.tsx",
+        "config": {}
+      },
+      "routes/admin/index": {
+        "id": "routes/admin/index",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/index.tsx",
+        "path": "admin",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/commandes/index": {
+        "id": "routes/admin/commandes/index",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/commandes/index.tsx",
+        "path": "admin/commandes",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/commandes/detail": {
+        "id": "routes/admin/commandes/detail",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/commandes/detail.tsx",
+        "path": "admin/commandes/:id",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/offres/index": {
+        "id": "routes/admin/offres/index",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/offres/index.tsx",
+        "path": "admin/offres",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/offres/edit": {
+        "id": "routes/admin/offres/edit",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/offres/edit.tsx",
+        "path": "admin/offres/:id",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/projets/index": {
+        "id": "routes/admin/projets/index",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/projets/index.tsx",
+        "path": "admin/projets",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/projets/edit": {
+        "id": "routes/admin/projets/edit",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/projets/edit.tsx",
+        "path": "admin/projets/:id",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/tags": {
+        "id": "routes/admin/tags",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/tags.tsx",
+        "path": "admin/tags",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/faq": {
+        "id": "routes/admin/faq",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/faq.tsx",
+        "path": "admin/faq",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/temoignages": {
+        "id": "routes/admin/temoignages",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/temoignages.tsx",
+        "path": "admin/temoignages",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/blog": {
+        "id": "routes/admin/blog",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/blog.tsx",
+        "path": "admin/blog",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/admin/settings": {
+        "id": "routes/admin/settings",
+        "parentId": "routes/admin/layout",
+        "file": "app/routes/admin/settings.tsx",
+        "path": "admin/settings",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/api/stripe.create-checkout": {
+        "id": "routes/api/stripe.create-checkout",
+        "parentId": "root",
+        "file": "app/routes/api/stripe.create-checkout.tsx",
+        "path": "api/stripe/create-checkout",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/api/stripe.webhook": {
+        "id": "routes/api/stripe.webhook",
+        "parentId": "root",
+        "file": "app/routes/api/stripe.webhook.tsx",
+        "path": "api/stripe/webhook",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/api/revision": {
+        "id": "routes/api/revision",
+        "parentId": "root",
+        "file": "app/routes/api/revision.tsx",
+        "path": "api/revision",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/robots[.]txt": {
+        "id": "routes/robots[.]txt",
+        "parentId": "root",
+        "file": "app/routes/robots[.]txt.tsx",
+        "path": "robots.txt",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/sitemap.xml": {
+        "id": "routes/sitemap.xml",
+        "parentId": "root",
+        "file": "app/routes/sitemap.xml.tsx",
+        "path": "sitemap.xml",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    }
+  },
+  "reactRouterConfig": {
+    "appDirectory": "D:/fastfabric-premium/app",
+    "basename": "/",
+    "buildDirectory": "D:/fastfabric-premium/build",
+    "future": {
+      "unstable_optimizeDeps": false,
+      "unstable_subResourceIntegrity": false,
+      "v8_middleware": false,
+      "v8_splitRouteModules": false,
+      "v8_viteEnvironmentApi": false
+    },
+    "routes": {
+      "root": {
+        "id": "root",
+        "file": "root.tsx",
+        "path": ""
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "routes/home.tsx",
+        "index": true
+      },
+      "routes/commander/index": {
+        "id": "routes/commander/index",
+        "parentId": "root",
+        "file": "routes/commander/index.tsx",
+        "path": "commander"
+      },
+      "routes/commander/projet": {
+        "id": "routes/commander/projet",
+        "parentId": "root",
+        "file": "routes/commander/projet.tsx",
+        "path": "commander/projet"
+      },
+      "routes/commander/contenu": {
+        "id": "routes/commander/contenu",
+        "parentId": "root",
+        "file": "routes/commander/contenu.tsx",
+        "path": "commander/contenu"
+      },
+      "routes/commander/paiement": {
+        "id": "routes/commander/paiement",
+        "parentId": "root",
+        "file": "routes/commander/paiement.tsx",
+        "path": "commander/paiement"
+      },
+      "routes/commander/confirmation": {
+        "id": "routes/commander/confirmation",
+        "parentId": "root",
+        "file": "routes/commander/confirmation.tsx",
+        "path": "commander/confirmation/:id"
+      },
+      "routes/suivi": {
+        "id": "routes/suivi",
+        "parentId": "root",
+        "file": "routes/suivi.tsx",
+        "path": "suivi/:orderNumber"
+      },
+      "routes/mentions-legales": {
+        "id": "routes/mentions-legales",
+        "parentId": "root",
+        "file": "routes/mentions-legales.tsx",
+        "path": "mentions-legales"
+      },
+      "routes/cgv": {
+        "id": "routes/cgv",
+        "parentId": "root",
+        "file": "routes/cgv.tsx",
+        "path": "cgv"
+      },
+      "routes/confidentialite": {
+        "id": "routes/confidentialite",
+        "parentId": "root",
+        "file": "routes/confidentialite.tsx",
+        "path": "confidentialite"
+      },
+      "routes/ads.site-vitrine": {
+        "id": "routes/ads.site-vitrine",
+        "parentId": "root",
+        "file": "routes/ads.site-vitrine.tsx",
+        "path": "ads/site-vitrine"
+      },
+      "routes/ads.landing-page": {
+        "id": "routes/ads.landing-page",
+        "parentId": "root",
+        "file": "routes/ads.landing-page.tsx",
+        "path": "ads/landing-page"
+      },
+      "routes/blog._index": {
+        "id": "routes/blog._index",
+        "parentId": "root",
+        "file": "routes/blog._index.tsx",
+        "path": "blog"
+      },
+      "routes/blog.$slug": {
+        "id": "routes/blog.$slug",
+        "parentId": "root",
+        "file": "routes/blog.$slug.tsx",
+        "path": "blog/:slug"
+      },
+      "routes/secteur.$secteur": {
+        "id": "routes/secteur.$secteur",
+        "parentId": "root",
+        "file": "routes/secteur.$secteur.tsx",
+        "path": "secteur/:secteur"
+      },
+      "routes/secteur.$secteur.$segment": {
+        "id": "routes/secteur.$secteur.$segment",
+        "parentId": "root",
+        "file": "routes/secteur.$secteur.$segment.tsx",
+        "path": "secteur/:secteur/:segment"
+      },
+      "routes/service.site-vitrine": {
+        "id": "routes/service.site-vitrine",
+        "parentId": "root",
+        "file": "routes/service.site-vitrine.tsx",
+        "path": "site-vitrine"
+      },
+      "routes/service.landing-page": {
+        "id": "routes/service.landing-page",
+        "parentId": "root",
+        "file": "routes/service.landing-page.tsx",
+        "path": "landing-page"
+      },
+      "routes/service.site-sur-mesure": {
+        "id": "routes/service.site-sur-mesure",
+        "parentId": "root",
+        "file": "routes/service.site-sur-mesure.tsx",
+        "path": "site-sur-mesure"
+      },
+      "routes/$service.$ville": {
+        "id": "routes/$service.$ville",
+        "parentId": "root",
+        "file": "routes/$service.$ville.tsx",
+        "path": ":service/:ville"
+      },
+      "routes/admin/login": {
+        "id": "routes/admin/login",
+        "parentId": "root",
+        "file": "routes/admin/login.tsx",
+        "path": "admin/login"
+      },
+      "routes/admin/layout": {
+        "id": "routes/admin/layout",
+        "parentId": "root",
+        "file": "routes/admin/layout.tsx"
+      },
+      "routes/admin/index": {
+        "id": "routes/admin/index",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/index.tsx",
+        "path": "admin"
+      },
+      "routes/admin/commandes/index": {
+        "id": "routes/admin/commandes/index",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/commandes/index.tsx",
+        "path": "admin/commandes"
+      },
+      "routes/admin/commandes/detail": {
+        "id": "routes/admin/commandes/detail",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/commandes/detail.tsx",
+        "path": "admin/commandes/:id"
+      },
+      "routes/admin/offres/index": {
+        "id": "routes/admin/offres/index",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/offres/index.tsx",
+        "path": "admin/offres"
+      },
+      "routes/admin/offres/edit": {
+        "id": "routes/admin/offres/edit",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/offres/edit.tsx",
+        "path": "admin/offres/:id"
+      },
+      "routes/admin/projets/index": {
+        "id": "routes/admin/projets/index",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/projets/index.tsx",
+        "path": "admin/projets"
+      },
+      "routes/admin/projets/edit": {
+        "id": "routes/admin/projets/edit",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/projets/edit.tsx",
+        "path": "admin/projets/:id"
+      },
+      "routes/admin/tags": {
+        "id": "routes/admin/tags",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/tags.tsx",
+        "path": "admin/tags"
+      },
+      "routes/admin/faq": {
+        "id": "routes/admin/faq",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/faq.tsx",
+        "path": "admin/faq"
+      },
+      "routes/admin/temoignages": {
+        "id": "routes/admin/temoignages",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/temoignages.tsx",
+        "path": "admin/temoignages"
+      },
+      "routes/admin/blog": {
+        "id": "routes/admin/blog",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/blog.tsx",
+        "path": "admin/blog"
+      },
+      "routes/admin/settings": {
+        "id": "routes/admin/settings",
+        "parentId": "routes/admin/layout",
+        "file": "routes/admin/settings.tsx",
+        "path": "admin/settings"
+      },
+      "routes/api/stripe.create-checkout": {
+        "id": "routes/api/stripe.create-checkout",
+        "parentId": "root",
+        "file": "routes/api/stripe.create-checkout.tsx",
+        "path": "api/stripe/create-checkout"
+      },
+      "routes/api/stripe.webhook": {
+        "id": "routes/api/stripe.webhook",
+        "parentId": "root",
+        "file": "routes/api/stripe.webhook.tsx",
+        "path": "api/stripe/webhook"
+      },
+      "routes/api/revision": {
+        "id": "routes/api/revision",
+        "parentId": "root",
+        "file": "routes/api/revision.tsx",
+        "path": "api/revision"
+      },
+      "routes/robots[.]txt": {
+        "id": "routes/robots[.]txt",
+        "parentId": "root",
+        "file": "routes/robots[.]txt.tsx",
+        "path": "robots.txt"
+      },
+      "routes/sitemap.xml": {
+        "id": "routes/sitemap.xml",
+        "parentId": "root",
+        "file": "routes/sitemap.xml.tsx",
+        "path": "sitemap.xml"
+      }
+    },
+    "routeDiscovery": {
+      "mode": "lazy",
+      "manifestPath": "/__manifest"
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true,
+    "unstable_routeConfig": [
+      {
+        "id": "root",
+        "path": "",
+        "file": "root.tsx",
+        "children": [
+          {
+            "file": "routes/home.tsx",
+            "index": true
+          },
+          {
+            "file": "routes/commander/index.tsx",
+            "path": "commander"
+          },
+          {
+            "file": "routes/commander/projet.tsx",
+            "path": "commander/projet"
+          },
+          {
+            "file": "routes/commander/contenu.tsx",
+            "path": "commander/contenu"
+          },
+          {
+            "file": "routes/commander/paiement.tsx",
+            "path": "commander/paiement"
+          },
+          {
+            "file": "routes/commander/confirmation.tsx",
+            "path": "commander/confirmation/:id"
+          },
+          {
+            "file": "routes/suivi.tsx",
+            "path": "suivi/:orderNumber"
+          },
+          {
+            "file": "routes/mentions-legales.tsx",
+            "path": "mentions-legales"
+          },
+          {
+            "file": "routes/cgv.tsx",
+            "path": "cgv"
+          },
+          {
+            "file": "routes/confidentialite.tsx",
+            "path": "confidentialite"
+          },
+          {
+            "file": "routes/ads.site-vitrine.tsx",
+            "path": "ads/site-vitrine"
+          },
+          {
+            "file": "routes/ads.landing-page.tsx",
+            "path": "ads/landing-page"
+          },
+          {
+            "file": "routes/blog._index.tsx",
+            "path": "blog"
+          },
+          {
+            "file": "routes/blog.$slug.tsx",
+            "path": "blog/:slug"
+          },
+          {
+            "file": "routes/secteur.$secteur.tsx",
+            "path": "secteur/:secteur"
+          },
+          {
+            "file": "routes/secteur.$secteur.$segment.tsx",
+            "path": "secteur/:secteur/:segment"
+          },
+          {
+            "file": "routes/service.site-vitrine.tsx",
+            "path": "site-vitrine"
+          },
+          {
+            "file": "routes/service.landing-page.tsx",
+            "path": "landing-page"
+          },
+          {
+            "file": "routes/service.site-sur-mesure.tsx",
+            "path": "site-sur-mesure"
+          },
+          {
+            "file": "routes/$service.$ville.tsx",
+            "path": ":service/:ville"
+          },
+          {
+            "file": "routes/admin/login.tsx",
+            "path": "admin/login"
+          },
+          {
+            "file": "routes/admin/layout.tsx",
+            "children": [
+              {
+                "file": "routes/admin/index.tsx",
+                "path": "admin"
+              },
+              {
+                "file": "routes/admin/commandes/index.tsx",
+                "path": "admin/commandes"
+              },
+              {
+                "file": "routes/admin/commandes/detail.tsx",
+                "path": "admin/commandes/:id"
+              },
+              {
+                "file": "routes/admin/offres/index.tsx",
+                "path": "admin/offres"
+              },
+              {
+                "file": "routes/admin/offres/edit.tsx",
+                "path": "admin/offres/:id"
+              },
+              {
+                "file": "routes/admin/projets/index.tsx",
+                "path": "admin/projets"
+              },
+              {
+                "file": "routes/admin/projets/edit.tsx",
+                "path": "admin/projets/:id"
+              },
+              {
+                "file": "routes/admin/tags.tsx",
+                "path": "admin/tags"
+              },
+              {
+                "file": "routes/admin/faq.tsx",
+                "path": "admin/faq"
+              },
+              {
+                "file": "routes/admin/temoignages.tsx",
+                "path": "admin/temoignages"
+              },
+              {
+                "file": "routes/admin/blog.tsx",
+                "path": "admin/blog"
+              },
+              {
+                "file": "routes/admin/settings.tsx",
+                "path": "admin/settings"
+              }
+            ]
+          },
+          {
+            "file": "routes/api/stripe.create-checkout.tsx",
+            "path": "api/stripe/create-checkout"
+          },
+          {
+            "file": "routes/api/stripe.webhook.tsx",
+            "path": "api/stripe/webhook"
+          },
+          {
+            "file": "routes/api/revision.tsx",
+            "path": "api/revision"
+          },
+          {
+            "file": "routes/robots[.]txt.tsx",
+            "path": "robots.txt"
+          },
+          {
+            "file": "routes/sitemap.xml.tsx",
+            "path": "sitemap.xml"
+          }
+        ]
+      }
+    ]
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}
